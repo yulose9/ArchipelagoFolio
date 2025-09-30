@@ -1,2 +1,87 @@
-*.bak
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+*.test.js.snap
+*.test.ts.snap
+
+# Next.js Build Output
+/.next/
+/out/
+.next
+
+# Production
+/build
+/dist
+
+# Debug & Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Environment Variables (CRITICAL - NEVER COMMIT)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.env
+
+# IDE & Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.vscode/mcp.json
+.idea/
+*.swp
+*.swo
 *~
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Vercel & Deployment
+.vercel
+.netlify
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cache & Temp
+.cache
+.parcel-cache
+.temp
+.tmp
+*.cache
+
+# Misc
+*.pem
+*.key
+*.cert
+
+# Local Scripts with Hardcoded Values
+scripts/verify-mapbox-local.js
+scripts/*-local.js
+
+# Documentation with Secrets (if any)
+*-SECRETS.md
+*-TOKENS.md
+SETUP_COMPLETE_LOCAL.md
+
