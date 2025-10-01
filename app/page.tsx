@@ -80,8 +80,11 @@ export default function HomePage() {
                         transition={{ duration: 1, delay: 0.5 }}
                     >
                         <motion.h1
-                            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent"
-                            style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.1)' }}
+                            className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl"
+                            style={{ 
+                                textShadow: '0 4px 30px rgba(0, 0, 0, 0.8), 0 2px 15px rgba(0, 0, 0, 0.6), 0 8px 40px rgba(0, 0, 0, 0.4)',
+                                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))'
+                            }}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.7 }}
@@ -89,25 +92,41 @@ export default function HomePage() {
                             John Doe
                         </motion.h1>
                         <motion.p
-                            className="text-xl md:text-2xl text-slate-200 mb-8 max-w-2xl mx-auto"
-                            style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.9), 0 1px 8px rgba(0, 0, 0, 0.2)' }}
+                            className="text-2xl md:text-4xl font-semibold text-white mb-12 max-w-3xl mx-auto px-6 py-4 bg-black/40 backdrop-blur-md rounded-2xl border border-white/20"
+                            style={{ 
+                                textShadow: '0 3px 20px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.8)',
+                            }}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.9 }}
                         >
                             Full-Stack Developer & Digital Innovator
                         </motion.p>
-                        <motion.div
-                            className="flex items-center justify-center space-x-4"
+                        <motion.button
+                            className="flex items-center justify-center space-x-3 mx-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-full px-8 py-4 transition-all duration-300 cursor-pointer group"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1.1 }}
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => {
+                                window.scrollTo({
+                                    top: window.innerHeight,
+                                    behavior: 'smooth'
+                                });
+                            }}
                         >
-                            <div className="w-px h-16 bg-white/30"></div>
-                            <p className="text-sm text-slate-300 writing-mode-vertical-rl" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}>
-                                Scroll to explore
-                            </p>
-                        </motion.div>
+                            <span className="text-lg md:text-xl font-semibold text-white" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
+                                Scroll to Explore
+                            </span>
+                            <motion.div
+                                animate={{ y: [0, 5, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                                className="text-2xl"
+                            >
+                                ↓
+                            </motion.div>
+                        </motion.button>
                     </motion.div>
                 </section>
 

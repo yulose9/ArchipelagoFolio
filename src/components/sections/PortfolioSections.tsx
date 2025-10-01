@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioSections } from '../../data/portfolio';
 import AboutSection from './AboutSection';
 import ProjectsSection from './ProjectsSection';
@@ -18,6 +19,21 @@ const PortfolioSections = ({
 }: PortfolioSectionsProps) => {
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
     const [activeSection, setActiveSection] = useState<string>('about');
+    const [showNavigation, setShowNavigation] = useState(false);
+
+    // Track scroll position to show/hide navigation
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const heroHeight = window.innerHeight;
+            
+            // Show navigation when scrolled past 50% of hero section
+            setShowNavigation(scrollPosition > heroHeight * 0.5);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     // Intersection Observer setup for section visibility
     useEffect(() => {
@@ -97,26 +113,38 @@ const PortfolioSections = ({
                     </div>
                 ))}
 
-            {/* Navigation indicator - fixed positioned on the right side, properly aligned */}
-            <div className="fixed right-8 top-1/2 -translate-y-1/2 z-30">
-                <div className="flex flex-col space-y-4 bg-black/30 backdrop-blur-sm rounded-full p-3 shadow-xl">
-                    {portfolioSections.map((section: any) => (
-                        <button
-                            key={section.id}
-                            className={`w-4 h-4 rounded-full transition-all duration-300 ${activeSection === section.id
-                                    ? 'bg-white scale-125 shadow-lg shadow-white/50'
-                                    : 'bg-white/40 hover:bg-white/70 hover:scale-110'
-                                }`}
-                            onClick={() => {
-                                const element = document.querySelector(`[data-section-id="${section.id}"]`);
-                                element?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            aria-label={`Navigate to ${section.title}`}
-                            title={section.title}
-                        />
-                    ))}
-                </div>
-            </div>
+            {/* Navigation indicator - fixed positioned on the right side, hidden on hero page */}
+            <AnimatePresence>
+                {showNavigation && (
+                    <motion.div
+                        className="fixed right-8 top-1/2 -translate-y-1/2 z-30"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 50 }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
+                    >
+                        <div className="flex flex-col space-y-4 bg-black/30 backdrop-blur-sm rounded-full p-3 shadow-xl">
+                            {portfolioSections.map((section: any) => (
+                                <motion.button
+                                    key={section.id}
+                                    className={`w-4 h-4 rounded-full transition-all duration-300 ${activeSection === section.id
+                                            ? 'bg-white scale-125 shadow-lg shadow-white/50'
+                                            : 'bg-white/40 hover:bg-white/70 hover:scale-110'
+                                        }`}
+                                    onClick={() => {
+                                        const element = document.querySelector(`[data-section-id="${section.id}"]`);
+                                        element?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    aria-label={`Navigate to ${section.title}`}
+                                    title={section.title}
+                                />
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
