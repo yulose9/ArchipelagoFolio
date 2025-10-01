@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 // Font configurations
@@ -222,6 +223,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             }}
           />
         )}
+        <Analytics />
       </body>
     </html>
   );
