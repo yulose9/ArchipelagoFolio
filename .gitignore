@@ -85,3 +85,6 @@ scripts/*-local.js
 *-TOKENS.md
 SETUP_COMPLETE_LOCAL.md
 
+# Duplicate/Test Projects (Vercel Build Fix)
+portfolio-map-app/
+
