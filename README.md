@@ -47,8 +47,8 @@ This project follows four core constitutional principles:
 1. **Clone the repository**
 
    ```bash
-   git clone [repository-url]
-   cd interactive-3d-portfolio
+   git clone https://github.com/yulose9/ArchipelagoFolio.git
+   cd ArchipelagoFolio
    ```
 
 2. **Install dependencies**
