@@ -18,12 +18,12 @@ export interface GSAPAnimationOptions {
 }
 
 export interface ScrollTriggerOptions {
-    trigger: string | Element;
+    trigger?: string | Element;
     start?: string;
     end?: string;
     scrub?: boolean | number;
     pin?: boolean;
-    snap?: boolean | object;
+    snap?: number | number[] | 'labels' | 'labelsDirectional' | ((value: number) => number);
     onUpdate?: (self: ScrollTrigger) => void;
     onToggle?: (self: ScrollTrigger) => void;
 }

@@ -9,11 +9,11 @@ interface ProjectsSectionProps {
   className?: string;
 }
 
-const ProjectsSection= ({
+const ProjectsSection = ({
   section,
   isVisible,
   className = '',
-}) => {
+}: ProjectsSectionProps) => {
   const containerVariants = {
     hidden: {
       opacity: 0,
